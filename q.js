@@ -79,9 +79,6 @@ Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,NB,Regex,key,Q){
 						Q[r]=Q[u]
 					}
 					break;
-				indexault:
-					return;
-					break;
 			}
 		},
 		V:function(){

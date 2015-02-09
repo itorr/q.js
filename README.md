@@ -12,7 +12,8 @@ http://mouto.org/#!54092
 
 
  1. 无 JavaScript 库依托，可随意搭配使用
- 2. 源代码不及百行，压缩后 `834byte`
+ 2. 源代码不及百行压缩后 `834byte`
+ 3. 支持 IE6+ Chrome Safari FF
  3. 未做情况判定，使用 Q.js 必然会注册 `window.Q`
 
 ###万物之<del>死</del>始
