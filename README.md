@@ -26,7 +26,6 @@ http://mouto.org/#!54092
 
 <script src="q.js"></script>
 <script>
-
 Q.reg('home',function(){
 	document.getElementById('m').innerHTML='Hallo World';
 });
