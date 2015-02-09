@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<div id="m"></div>
+
+<script src="../q.js"></script>
+<script>
+
+Q.reg('home',function(){
+	document.getElementById('m').innerHTML='打开了home页';
+});
+
+Q.init({
+	index:'home'/* 首页地址 */
+});
+</script>
