@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>博客</title>
+<style>
+nav{line-height:2em;}
+nav a{display:inline-block;vertical-align:top;padding:0 .5em;}
+nav a.active{background:#369;color:#FFF;}
+</style>
+<nav>
+    <a href="#!home" class="active">首页</a>
+    <a href="#!about">关于</a>
+    <a href="#!friend">友情链接</a>
+</nav>
+
+
+<div id="m"></div>
+
+<script src="../q.js"></script>
+<script>
+var 
+M=document.getElementById('m'),
+$=function(i){return document.querySelector(i)};
+
+Q.reg('home',function(){
+   M.innerHTML='首页';
+});
+
+Q.reg('about',function(){
+   M.innerHTML='关于';
+});
+
+Q.reg('friend',function(){
+   M.innerHTML='友情链接';
+});
+
+
+
+Q.init({
+    index:'home', /* 首页地址 */
+    pop:navchange=function(L){/* 每次有url变更时都会触发pop回调 */
+    /* L 为当前回调函数名称（目前仅支持关键字回调情况） */
+
+    var a;//临时变量
+    if(a=$('nav a.active')) //如果存在这个DOM 
+        a.className=''; //修改它的ClassName
+    if(a=$('nav a[href="#!'+L+'"]')) //如果存在这个DOM 
+        a.className='active';//修改它的ClassName
+}
+});
+
+</script>
