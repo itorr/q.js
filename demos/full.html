@@ -33,30 +33,6 @@
 </form>
 <script src="q.js"></script>
 <script>
-
-
-
-
-
-
-
-
-document.getElementById('getLash').onclick=function(){
-	M.innerHTML+='\n';
-	M.innerHTML+='\n当前页面地址: '+Q.lash;
-};
-document.getElementById('goform').onclick=function(){
-	if(!this.url.value){
-		this.url.focus();
-		return false;
-	}
-	Q.go(this.url.value);
-	return false;
-}
-
-
-
-
 var M=document.getElementById('m');
 
 
@@ -84,8 +60,7 @@ Q.reg(/before(\d+)end/,function(num){
 	M.innerHTML+='\n现在是通过正则注册的URL，里面的参数是：'+num;
 })
 
-
-
+/* 启动函数 */
 Q.init({
 	key:'!',/* url里#和url名之间的分割符号 默认为感叹号 */
 	index:'home',/* 首页地址 如果访问到不能访问页面也会跳回此页 */
@@ -93,4 +68,20 @@ Q.init({
 		console.log('pop 当前参数是:'+L);
 	}
 });
+
+
+
+
+document.getElementById('getLash').onclick=function(){
+	M.innerHTML+='\n';
+	M.innerHTML+='\n当前页面地址: '+Q.lash;
+};
+document.getElementById('goform').onclick=function(){
+	if(!this.url.value){
+		this.url.focus();
+		return false;
+	}
+	Q.go(this.url.value);
+	return false;
+};
 </script>
