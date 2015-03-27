@@ -31,11 +31,15 @@ Q.reg([
   ['friend',function(){
     M.innerHTML='我的朋友们都在这~';
   }],
-  //下面什么都不会发生
-  ['void']
+  ['void']//这里什么都没有
 ]);
-//当然这里也什么都不会发生
-Q.reg('void2');
+
+Q.reg('void2');//这里也什么都没有
+
+Q.reg(['猫娘1','猫娘2','猫娘3'],function(){
+  M.innerHTML='喵喵喵';
+});
+
 
 
 Q.init({
