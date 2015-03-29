@@ -60,26 +60,32 @@ Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,NB,Regex,key,Q){
 				},100);
 		},
 		reg:function(r,u){
-			if(!r||!u)
+			//稍微修改了下函数，现在能使用数组来注册了
+			if(!r)
 				return;
 
-			switch(typeof r){
-				case 'object':
-					if(typeof u=='function'){
-						var fn='A'+(('8'+Math.random()).substring(3)*1).toString(16);
-						Q[fn]=u;
-						u=fn;
-					}
-					Regex.push([r,u]);
-					break;
-				case 'string':
-					if(typeof u=='function'){
-						Q[r]=u
-					}else if(typeof u=='string' && Q[u]){
-						Q[r]=Q[u]
-					}
-					break;
-			}
+			if(u == undefined)
+				u=function(){};
+
+			if(r instanceof RegExp){
+				if(typeof u=='function'){
+					var fn='A'+(('8'+Math.random()).substring(3)*1).toString(16);
+					Q[fn]=u;
+					u=fn;
+				}
+				Regex.push([r,u]);
+			}else if(r instanceof Array){
+				for(var i in r){
+					L=[].concat(r[i]).concat(u);
+					this.reg.apply(this,L);
+				}
+			}else if (typeof r == 'string') {
+				if(typeof u=='function'){
+					Q[r]=u;
+				}else if(typeof u=='string' && Q[u]){
+					Q[r]=Q[u];
+				}
+			};
 		},
 		V:function(){
 			console.log('Q.js 请设置框架默认页面');
