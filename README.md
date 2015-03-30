@@ -301,15 +301,13 @@ ____________________________
 
 ```javascript
 
-Q.reg('home',function(){
-   M.innerHTML='这里是首页';
-}).reg([
-  ['about',function(){
-    M.innerHTML='我是卜卜口';
-  }],
-  ['friend',function(){
-    M.innerHTML='我的朋友们都在这~';
-  }]
-])
-
+Q.reg('地址1',function(){
+   //回调
+}).reg('地址2',function(){
+    //回调
+}).reg(['地址3','地址4'],function(){//链式数组混用
+    //回调 
+}).reg('地址5',function(){
+    //回调
+});
 ```
