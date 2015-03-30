@@ -1,3 +1,8 @@
+/*!
+ * Q.js<https://github.com/itorr/q.js>
+ * Version: 1.2
+ * Built: 2014/12/28
+ */
 var 
 Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,Regex,key,Q){
 	body=D.getElementsByTagName('body')[0];
@@ -88,9 +93,7 @@ Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,Regex,key,Q){
 			return this
 		},
 		V:function(){
-			console.log('Q.js 请设置框架默认页面');
-			console.log('Q.js @卜卜口<http://i.mouto.org> 2014/12/28');
-			/*这行注释的意义在于，愿看到代码时能保留上面一行 OAQ */
+			console.log('Q.js <https://github.com/itorr/q.js> 2014/12/28');
 			return this
 		},
 		go:function(u){
