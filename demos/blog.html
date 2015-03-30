@@ -23,8 +23,7 @@ $=function(i){return document.querySelector(i)};
 
 Q.reg('home',function(){
    M.innerHTML='这里是首页';
-});
-Q.reg([
+}).reg([
   ['about',function(){
     M.innerHTML='我是卜卜口';
   }],
@@ -32,9 +31,7 @@ Q.reg([
     M.innerHTML='我的朋友们都在这~';
   }],
   ['void']//这里什么都没有
-]);
-
-Q.reg('void2');//这里也什么都没有
+]).reg('void2');//这里也什么都没有
 
 Q.reg(['猫娘1','猫娘2','猫娘3'],function(){
   M.innerHTML='喵喵喵';

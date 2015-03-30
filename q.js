@@ -1,12 +1,10 @@
 var 
-Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,NB,Regex,key,Q){
-	NB='onhashchange' in W;
+Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,Regex,key,Q){
 	body=D.getElementsByTagName('body')[0];
 	laHash='`';
 	Regex=[];
 	key='!';
 	popstate=function(){
-		if(NB)W.onhashchange=popstate;
 		if(laHash==location.hash)
 			return;
 
@@ -51,13 +49,14 @@ Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,NB,Regex,key,Q){
 
 			popstate();
 
-			if(!NB)
-				setInterval(function(){
-					if(laHash!=location.hash){
-						popstate();
-						laHash=location.hash;
-					}
-				},100);
+			'onhashchange' in W?W.onhashchange=popstate:setInterval(function(){
+				if(laHash!=location.hash){
+					popstate();
+					laHash=location.hash;
+				}
+			},100);
+
+			return this
 		},
 		reg:function(r,u){
 			//稍微修改了下函数，现在能使用数组来注册了
@@ -86,14 +85,17 @@ Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,NB,Regex,key,Q){
 					Q[r]=Q[u];
 				}
 			};
+			return this
 		},
 		V:function(){
 			console.log('Q.js 请设置框架默认页面');
 			console.log('Q.js @卜卜口<http://i.mouto.org> 2014/12/28');
 			/*这行注释的意义在于，愿看到代码时能保留上面一行 OAQ */
+			return this
 		},
 		go:function(u){
 			location.hash='#'+key+u;
+			return this
 		}
 	};
 	return Q;
