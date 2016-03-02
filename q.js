@@ -4,8 +4,8 @@
  * Built: 2014/12/28
  */
 var 
-Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,Regex,key,Q){
-	body=D.getElementsByTagName('body')[0];
+Q=function(W,D,M,html,laHash,lash,L,LL,index,popstate,VS,Regex,key,Q){
+	html=D.getElementsByTagName('html')[0];
 	laHash='`';
 	Regex=[];
 	key='!';
@@ -62,7 +62,7 @@ Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,Regex,key,Q){
 			return this
 		},
 		pop:function(L){
-			body.setAttribute('view',L[0]);
+			html.setAttribute('view',L[0]);
 		},
 		reg:function(r,u){
 			//稍微修改了下函数，现在能使用数组来注册了
