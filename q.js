@@ -31,8 +31,6 @@ Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,Regex,key,Q){
 			return;
 		}
 
-		body.setAttribute('view',L[0]);
-
 		if(Q.pop)
 			Q.pop.apply(W,L);
 
@@ -62,6 +60,9 @@ Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,Regex,key,Q){
 			},100);
 
 			return this
+		},
+		pop:function(L){
+			body.setAttribute('view',L[0]);
 		},
 		reg:function(r,u){
 			//稍微修改了下函数，现在能使用数组来注册了
