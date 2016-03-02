@@ -31,7 +31,7 @@ Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,Regex,key,Q){
 			return;
 		}
 
-		body.className='body-'+L[0];
+		body.setAttribute('view',L[0]);
 
 		if(Q.pop)
 			Q.pop.apply(W,L);
