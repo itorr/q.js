@@ -4,44 +4,35 @@
  * Built: 2014/12/28
  */
 var 
-Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,Regex,key,Q){
-	body=D.getElementsByTagName('body')[0];
-	laHash='`';
+Q=function(W,D,M,HTML,hash,view,arg,LL,i,index,Regex,key,Q){
+	HTML=D.getElementsByTagName('html')[0];
 	Regex=[];
 	key='!';
-	popstate=function(){
-		if(laHash==location.hash)
-			return;
+	onhashchange=function(){
+		Q.hash=hash=location.hash.substring(key.length+1);
 
-		Q.lash=lash=location.hash.substring(key.length+1);
+		arg=hash.split('/');
 
-		L=lash.split('/');
-
-		var 
 		i=Regex.length;
-		while(i--)if(LL=lash.match(Regex[i][0])){
-			LL[0]=Regex[i][1];
-			L=LL;
-			break;
-		}
+		while(i--)
+			if(LL=hash.match(Regex[i])){
+				arg[0]=Regex[i];
+				break;
+			}
+
+		if(!Q[arg[0]])
+			arg[0]=index;
 		
-		if(!Q[L[0]]){
-			location.hash='#'+key+index;
-			Q.lash=index;
-			return;
-		}
-
-		body.className='body-'+L[0];
-
 		if(Q.pop)
-			Q.pop.apply(W,L);
+			Q.pop.apply(W,arg);
 
-		laHash=location.hash;
+		view=arg.shift();
 
-		Q[L.shift()].apply(W,L);
+		HTML.setAttribute('view',view);
+
+		Q[view].apply(W,arg);
 	};
 	Q={
-		lash:'',
 		init:function(o){
 
 			if(o.key!==undefined)
@@ -52,19 +43,11 @@ Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,Regex,key,Q){
 			if(o.pop&&typeof o.pop=='function')
 				Q.pop=o.pop;
 
-			popstate();
-
-			'onhashchange' in W?W.onhashchange=popstate:setInterval(function(){
-				if(laHash!=location.hash){
-					popstate();
-					laHash=location.hash;
-				}
-			},100);
+			onhashchange();
 
 			return this
 		},
 		reg:function(r,u){
-			//稍微修改了下函数，现在能使用数组来注册了
 			if(!r)
 				return;
 
@@ -72,24 +55,20 @@ Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,Regex,key,Q){
 				u=function(){};
 
 			if(r instanceof RegExp){
-				if(typeof u=='function'){
-					var fn='A'+(('8'+Math.random()).substring(3)*1).toString(16);
-					Q[fn]=u;
-					u=fn;
-				}
-				Regex.push([r,u]);
-			}else if(r instanceof Array){
+				Q[r]=u;
+				Regex.push(r);
+			}else if(r instanceof Array){//数组注册
 				for(var i in r){
 					L=[].concat(r[i]).concat(u);
 					this.reg.apply(this,L);
 				}
-			}else if (typeof r == 'string') {
-				if(typeof u=='function'){
+			}else if(typeof r=='string'){
+				if(typeof u=='function')
 					Q[r]=u;
-				}else if(typeof u=='string' && Q[u]){
+				else if(typeof u=='string'&&Q[u])
 					Q[r]=Q[u];
-				}
-			};
+			}	
+			
 			return this
 		},
 		V:function(){

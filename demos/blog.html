@@ -24,7 +24,7 @@ $=function(i){return document.querySelector(i)};
 Q.reg('home',function(){
    M.innerHTML='这里是首页';
 }).reg([
-  ['about',function(){
+  [/^about$/,function(){
     M.innerHTML='我是卜卜口';
   }],
   ['friend',function(){
