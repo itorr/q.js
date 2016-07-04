@@ -54,12 +54,12 @@ Q=function(W,D,M,body,laHash,lash,L,LL,index,popstate,VS,Regex,key,Q){
 
 			popstate();
 
-			'onhashchange' in W?W.onhashchange=popstate:setInterval(function(){
+			'onhashchange' in W?W.onhashchange=popstate:body.onclick = function(){
 				if(laHash!=location.hash){
 					popstate();
 					laHash=location.hash;
 				}
-			},100);
+			};
 
 			return this
 		},
