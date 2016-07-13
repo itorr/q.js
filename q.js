@@ -26,7 +26,7 @@ Q=function(W,D,M,HTML,hash,view,arg,LL,i,index,Regex,key,Q){
 		if(Q.pop)
 			Q.pop.apply(W,arg);
 
-		view=arg.shift();
+		Q.lash=view=arg.shift();
 
 		HTML.setAttribute('view',view);
 
