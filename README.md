@@ -8,7 +8,7 @@ http://mouto.org/#!54092
 
 > 轻量、快速、极简
 
-　为了更好的利用缓存以及更少的后端支援，Q.js放弃了 HTML5 State，通过#!格式的 url hach 重现了 url 路由功能。
+　为了更好的利用缓存以及更少的后端支援，Q.js放弃了 HTML5 State，通过#!格式的 url hash 重现了 url 路由功能。
 
 
  1. 无 JavaScript 库依托，可随意搭配使用
