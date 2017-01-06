@@ -15,25 +15,28 @@
 	<a href="#!before5676end">before5676end</a>
 </div>
 
-<pre id="m"></pre>
+<button id="获取当前页面地址">获取当前页面地址</button>
 
-<button id="getLash">获取当前页面地址</button>
-
-<form id="goform">
+<form id="跳转表单">
 	<input name="url">
 	<button type="submit">go!</button>
 </form>
+
+<pre id="M"></pre>
+
 <script src="../q.js"></script>
 <script>
-var M=document.getElementById('m');
-
 
 /* 注册 home URL 在回调里期待接收两个参数 */
 Q.reg('home',function(str1,str2){
 	M.innerHTML+='\n';
 	M.innerHTML+='\n打开了home页';
-	M.innerHTML+='\n参数一是'+str1;
-	M.innerHTML+='\n参数二是'+str2;
+
+	if(str1)
+		M.innerHTML+='\n参数一是'+str1;
+
+	if(str2)
+		M.innerHTML+='\n参数二是'+str2;
 });
 
 
@@ -41,13 +44,11 @@ Q.reg('home',function(str1,str2){
 Q.reg('member',function(){
 	M.innerHTML+='\n';
 	M.innerHTML+='\n用户页';
-
-	console.log('用户页');
 })
 
 
 /* 通过正则表达式注册 URL */
-Q.reg(/before(\d+)end/,function(num){
+Q.reg(/^before(\d+)end$/,function(num){
 	M.innerHTML+='\n';
 	M.innerHTML+='\n现在是通过正则注册的URL，里面的参数是：'+num;
 })
@@ -56,24 +57,24 @@ Q.reg(/before(\d+)end/,function(num){
 Q.init({
 	key:'!',/* url里#和url名之间的分割符号 默认为感叹号 */
 	index:'home',/* 首页地址 如果访问到不能访问页面也会跳回此页 */
-	pop:function(L){/* 每次有url变更时都会触发pop回调 */
-		console.log('pop 当前参数是:'+L);
+	pop:function(L,arg){/* 每次有url变更时都会触发pop回调 */
+		console.log('pop 当前参数是:',arguments);
 	}
 });
 
 
 
 
-document.getElementById('getLash').onclick=function(){
+获取当前页面地址.onclick=function(){
 	M.innerHTML+='\n';
 	M.innerHTML+='\n当前页面地址: '+Q.lash;
 };
-document.getElementById('goform').onclick=function(){
-	if(!this.url.value){
-		this.url.focus();
-		return false;
-	}
+跳转表单.onsubmit=function(e){
+	e.preventDefault();
+
+	if(!this.url.value)
+		return this.url.focus();
+	
 	Q.go(this.url.value);
-	return false;
 };
 </script>
