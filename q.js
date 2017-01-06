@@ -16,11 +16,13 @@ Q=function(W,D,M,HTML,hash,view,arg,LL,i,index,Regex,key,Q){
 		i=Regex.length;
 		while(i--)
 			if(LL=hash.match(Regex[i])){
+				arg=LL;
 				arg[0]=Regex[i];
 				break;
 			}
 
-		if(!Q[arg[0]])
+
+		if(!Q[arg[0]]) // default
 			arg[0]=index;
 		
 		if(Q.pop)
@@ -32,6 +34,18 @@ Q=function(W,D,M,HTML,hash,view,arg,LL,i,index,Regex,key,Q){
 
 		Q[view].apply(W,arg);
 	};
+
+	
+	if(!'onhashchange' in W){
+		Q.path=location.hash;
+		setInterval(function(){
+			if(Q.path!=location.hash){
+				onhashchange();
+				Q.path=location.hash;
+			}
+		},100);
+	}
+
 	Q={
 		init:function(o){
 
