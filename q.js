@@ -4,8 +4,8 @@
  * Built: 2014/12/28
  */
 var 
-Q=function(W,D,M,HTML,hash,view,arg,LL,i,index,Regex,key,Q){
-	HTML=D.getElementsByTagName('html')[0];
+Q=function(W,D,HTML,hash,view,arg,_arg,i,index,Regex,key,Q){
+	HTML=D.documentElement;
 	Regex=[];
 	key='!';
 	onhashchange=function(){
@@ -15,8 +15,8 @@ Q=function(W,D,M,HTML,hash,view,arg,LL,i,index,Regex,key,Q){
 
 		i=Regex.length;
 		while(i--)
-			if(LL=hash.match(Regex[i])){
-				arg=LL;
+			if(_arg=hash.match(Regex[i])){
+				arg=_arg;
 				arg[0]=Regex[i];
 				break;
 			}
@@ -68,15 +68,15 @@ Q=function(W,D,M,HTML,hash,view,arg,LL,i,index,Regex,key,Q){
 			if(u == undefined)
 				u=function(){};
 
-			if(r instanceof RegExp){
+			if(r instanceof RegExp){ //正则注册
 				Q[r]=u;
 				Regex.push(r);
-			}else if(r instanceof Array){//数组注册
+			}else if(r instanceof Array){ //数组注册
 				for(var i in r){
 					L=[].concat(r[i]).concat(u);
 					this.reg.apply(this,L);
 				}
-			}else if(typeof r=='string'){
+			}else if(typeof r=='string'){ //关键字注册
 				if(typeof u=='function')
 					Q[r]=u;
 				else if(typeof u=='string'&&Q[u])
