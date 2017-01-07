@@ -73,8 +73,7 @@ Q=function(W,D,HTML,hash,view,arg,_arg,i,index,Regex,key,Q){
 				Regex.push(r);
 			}else if(r instanceof Array){ //数组注册
 				for(var i in r){
-					L=[].concat(r[i]).concat(u);
-					this.reg.apply(this,L);
+					this.reg.apply(this,[].concat(r[i]).concat(u));
 				}
 			}else if(typeof r=='string'){ //关键字注册
 				if(typeof u=='function')
