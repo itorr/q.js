@@ -11,7 +11,9 @@ Q=function(W,D,HTML,hash,view,arg,_arg,i,index,Regex,key,Q){
 	onhashchange=function(){
 		Q.hash=hash=location.hash.substring(key.length+1);
 
-		arg=hash.split('/');
+		arg=hash.split(/\?/g).shift();
+
+		arg=arg.split('/');
 
 		i=Regex.length;
 		while(i--)
